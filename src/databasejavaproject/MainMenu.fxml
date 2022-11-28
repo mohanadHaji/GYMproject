@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="729.0" prefWidth="1205.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="databasejavaproject.MainMenuController">
+   <children>
+      <AnchorPane fx:id="pagemanagpart" layoutX="-2.0" layoutY="160.0" prefHeight="570.0" prefWidth="1207.0" style="-fx-background-color: #451975;">
+         <children>
+            <ImageView fitHeight="544.0" fitWidth="1200.0" layoutX="3.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/interface.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="moneypage" layoutX="-10.0" layoutY="192.0" prefHeight="540.0" prefWidth="1215.0" style="-fx-background-color: #451975;">
+         <children>
+            <AnchorPane fx:id="customerPane" layoutX="193.0" layoutY="21.0" prefHeight="499.0" prefWidth="888.0" visible="false">
+               <children>
+                  <Label layoutX="48.0" layoutY="31.0" text="Customer Name" textFill="WHITE" />
+                  <Label layoutX="48.0" layoutY="83.0" prefHeight="27.0" prefWidth="130.0" text="Customer ID" textFill="WHITE" />
+                  <TextField fx:id="cusNameField" layoutX="220.0" layoutY="25.0" />
+                  <TextField fx:id="cusIdField" layoutX="220.0" layoutY="77.0" />
+                  <Button fx:id="newCusBut" layoutX="547.0" layoutY="12.0" mnemonicParsing="false" onAction="#addCustomerToDataBase" prefHeight="39.0" prefWidth="180.0" text="New Customer" />
+                  <Label fx:id="addedSuccesfully" layoutX="509.0" layoutY="83.0" prefHeight="27.0" prefWidth="244.0" text="Customer Added Succesfully" textFill="#24eb05" visible="false" />
+                  <Label fx:id="WrongIDCus" layoutX="503.0" layoutY="83.0" prefHeight="27.0" prefWidth="268.0" text="Sorry there is a customer in that ID Please Try another one" textFill="#e80909" visible="false" />
+                  <Button fx:id="viewCusBut" layoutX="346.0" layoutY="133.0" mnemonicParsing="false" onAction="#viewCusHandle" text="View Customers" />
+                  <TableView fx:id="cusTable" layoutX="196.0" layoutY="201.0" prefHeight="272.0" prefWidth="453.0" visible="false">
+                     <columns>
+                        <TableColumn prefWidth="148.0" text="Customer ID" />
+                        <TableColumn prefWidth="304.0" text="Customer Name" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="buyGoodPane" layoutX="200.0" layoutY="24.0" prefHeight="492.0" prefWidth="875.0">
+               <children>
+                  <AnchorPane fx:id="oldGoodPane" layoutX="60.0" layoutY="88.0" prefHeight="371.0" prefWidth="755.0" visible="false">
+                     <children>
+                        <ComboBox layoutX="167.0" layoutY="33.0" prefWidth="150.0" />
+                        <Label layoutX="97.0" layoutY="39.0" prefHeight="27.0" prefWidth="60.0" text="Good" textFill="WHITE" />
+                        <Label layoutX="47.0" layoutY="104.0" text="New Quantity" textFill="WHITE" />
+                        <TextField layoutX="167.0" layoutY="98.0" prefHeight="39.0" prefWidth="71.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="newGoodPane" layoutX="36.0" layoutY="45.0" prefHeight="390.0" prefWidth="769.0">
+                     <children>
+                        <Button fx:id="insertGoodButton" layoutX="487.0" layoutY="190.0" mnemonicParsing="false" onAction="#insertGoodToDataBase" text="InserNewGood" />
+                        <Label layoutX="71.0" layoutY="45.0" text="Good Name" textFill="#fcfcfc" />
+                        <Label layoutX="71.0" layoutY="182.0" prefHeight="27.0" prefWidth="124.0" text="Quantity" textFill="WHITE" />
+                        <Label layoutX="83.0" layoutY="140.0" prefHeight="27.0" prefWidth="75.0" text="Price" textFill="WHITE" />
+                        <Label layoutX="72.0" layoutY="92.0" prefHeight="27.0" prefWidth="97.0" text="Good PIN" textFill="WHITE" />
+                        <TextField fx:id="goodNameField" layoutX="195.0" layoutY="39.0" prefHeight="24.0" prefWidth="224.0" />
+                        <TextField fx:id="goodIdField" layoutX="195.0" layoutY="86.0" />
+                        <TextField fx:id="goodPriceField" layoutX="195.0" layoutY="134.0" />
+                        <TextField fx:id="goodQuantityField" layoutX="195.0" layoutY="190.0" />
+                        <Label fx:id="goodAddedSuc" layoutX="185.0" layoutY="263.0" prefHeight="27.0" prefWidth="231.0" text="Good Added Successfully" textFill="#7bff00" visible="false" />
+                        <Label fx:id="goodAddedFail" layoutX="185.0" layoutY="263.0" text="There is Error Check Data" textFill="RED" visible="false" />
+                     </children>
+                  </AnchorPane>
+                  <RadioButton fx:id="oldGoodRadio" layoutX="168.0" layoutY="25.0" mnemonicParsing="false" onAction="#buyGoodHandle" text="Old Good" textFill="#f5f5f5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group1" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="newGoodRadio" layoutX="444.0" layoutY="14.0" mnemonicParsing="false" onAction="#buyGoodHandle" selected="true" text="New Good" textFill="WHITE" toggleGroup="$group1" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="CustomersButton" layoutX="1081.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleButtonFGC" text="Customer" />
+            <Button fx:id="Bill" layoutX="38.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleButtonFGC" prefHeight="20.0" prefWidth="103.0" text="Bills" />
+            <Button fx:id="sellGood" layoutX="40.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleButtonFGC" text="Sell Good" />
+            <Button fx:id="buyGood" layoutX="39.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleButtonFGC" text="Buy Good" />
+            <AnchorPane fx:id="billsPane" layoutX="193.0" layoutY="21.0" prefHeight="463.0" prefWidth="831.0" visible="false">
+               <children>
+                  <Label layoutX="93.0" layoutY="58.0" text="Customer" textFill="WHITE" />
+                  <Label layoutX="86.0" layoutY="110.0" text="Bill Number" textFill="WHITE" />
+                  <Label layoutX="88.0" layoutY="165.0" text="Description" textFill="#f8f8f8" />
+                  <Label layoutX="122.0" layoutY="218.0" text="Cost" textFill="WHITE" />
+                  <Label layoutX="113.0" layoutY="272.0" text="Date" textFill="WHITE" />
+                  <ComboBox layoutX="213.0" layoutY="52.0" prefWidth="150.0" />
+                  <TextField layoutX="213.0" layoutY="104.0" />
+                  <TextField layoutX="213.0" layoutY="159.0" />
+                  <TextField layoutX="213.0" layoutY="212.0" />
+                  <DatePicker layoutX="213.0" layoutY="266.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="sellGoodPane" layoutX="193.0" layoutY="21.0" prefHeight="463.0" prefWidth="864.0" visible="false">
+               <children>
+                  <Label layoutX="115.0" layoutY="144.0" text="Good" textFill="WHITE" />
+                  <Label layoutX="116.0" layoutY="84.0" text="Label" />
+                  <Label layoutX="31.0" layoutY="90.0" text="Customer Name" textFill="WHITE" />
+                  <Label layoutX="89.0" layoutY="192.0" text="Quantity" textFill="WHITE" />
+                  <Label layoutX="116.0" layoutY="246.0" text="Price" textFill="WHITE" />
+                  <ComboBox layoutX="205.0" layoutY="84.0" prefWidth="150.0" />
+                  <ComboBox layoutX="205.0" layoutY="138.0" prefWidth="150.0" />
+                  <ComboBox layoutX="205.0" layoutY="192.0" prefWidth="150.0" />
+                  <Text layoutX="230.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Label layoutX="251.0" layoutY="247.0" textFill="#ff0d0d">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="485.0" layoutY="186.0" mnemonicParsing="false" text="Sell" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pagemamnagmember" layoutX="-10.0" layoutY="160.0" prefHeight="565.0" prefWidth="1215.0" style="-fx-background-color: #451975;">
+         <children>
+            <Button fx:id="newmemberbtn" layoutX="976.0" layoutY="50.0" mnemonicParsing="false" onAction="#handlebuttonmember" prefHeight="65.0" prefWidth="181.0" style="-fx-background-color: #91001;" text="الاشتراكات" />
+            <Button fx:id="medicalbtn" layoutX="979.0" layoutY="430.0" mnemonicParsing="false" onAction="#handlebuttonmember" prefHeight="54.0" prefWidth="182.0" text="الفحص الطبي" />
+            <Button fx:id="boxbtn" layoutX="975.0" layoutY="179.0" mnemonicParsing="false" onAction="#handlebuttonmember" prefHeight="54.0" prefWidth="181.0" text="الخزانة" />
+            <Button fx:id="viewmemberbtn" layoutX="987.0" layoutY="303.0" mnemonicParsing="false" onAction="#handlebuttonmember" prefHeight="54.0" prefWidth="173.0" text="عرض المشتركين" />
+            <ImageView fitHeight="391.0" fitWidth="700.0" layoutX="90.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/interface.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="newpagebox" layoutX="71.0" layoutY="177.0" prefHeight="537.0" prefWidth="734.0" style="-fx-background-color: #190536;" visible="false">
+         <children>
+            <Pane layoutX="490.0" layoutY="16.0" prefHeight="472.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50px;">
+               <children>
+                  <Button layoutX="52.0" layoutY="73.0" mnemonicParsing="false" onAction="#reservebox" prefHeight="41.0" prefWidth="146.0" style="-fx-background-radius: 30;" text="Reserve New Box" />
+                  <Button layoutX="28.0" layoutY="213.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="166.0" style="-fx-background-radius: 30;" text="Update Participate Box" />
+                  <Button layoutX="47.0" layoutY="307.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="154.0" style="-fx-background-radius: 30;" text="Search" />
+                  <Button layoutX="46.0" layoutY="142.0" mnemonicParsing="false" onAction="#insertboxx" prefHeight="41.0" prefWidth="146.0" style="-fx-background-radius: 30;" text="Insert New Box" />
+               </children>
+            </Pane>
+            <Button layoutX="48.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Box No." />
+            <Button layoutX="46.0" layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Capacity" />
+            <TextField fx:id="bid" layoutX="195.0" layoutY="95.0" prefHeight="25.0" prefWidth="201.0" />
+            <TextField fx:id="bcap" layoutX="196.0" layoutY="157.0" prefHeight="25.0" prefWidth="201.0" />
+            <Button layoutX="210.0" layoutY="305.0" mnemonicParsing="false" onAction="#insert" prefHeight="25.0" prefWidth="110.0" text="insert box" />
+            <Pane fx:id="reservepane" layoutX="17.0" layoutY="29.0" prefHeight="458.0" prefWidth="438.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+               <children>
+                  <Label layoutX="46.0" layoutY="23.0" prefHeight="46.0" prefWidth="238.0" text="Which Member Need to Rant Box ">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="46.0" layoutY="113.0" prefHeight="46.0" prefWidth="174.0" text="ID of Box ">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="49.0" layoutY="197.0" prefHeight="46.0" prefWidth="174.0" text="Start  Date Of Rent">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="46.0" layoutY="293.0" prefHeight="46.0" prefWidth="327.0" text="ID of Box ">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <AmbientLight color="CHARTREUSE" layoutX="167.0" layoutY="69.0" lightOn="true" />
+                  <DatePicker fx:id="start" layoutX="58.0" layoutY="252.0" prefHeight="25.0" prefWidth="174.0" />
+                  <DatePicker fx:id="end" layoutX="59.0" layoutY="345.0" prefHeight="25.0" prefWidth="172.0" />
+                  <Button layoutX="285.0" layoutY="345.0" mnemonicParsing="false" onAction="#reservebtn" prefHeight="25.0" prefWidth="119.0" text="Reserve Box" />
+                  <ChoiceBox fx:id="combomem" layoutX="74.0" layoutY="81.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="comboboxx" layoutX="74.0" layoutY="172.0" prefWidth="150.0" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="viewmember" layoutX="72.0" layoutY="179.0" opacity="0.92" prefHeight="533.0" prefWidth="732.0" style="-fx-background-color: #190536;" visible="false">
+         <children>
+            <Label layoutX="19.0" layoutY="19.0" prefHeight="31.0" prefWidth="86.0" text="Search" textFill="#fcf5f5">
+               <font>
+                  <Font name="Arial" size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchmember" layoutX="136.0" layoutY="28.0" onMousePressed="#serchmemberr" prefHeight="25.0" prefWidth="170.0" />
+            <TableView fx:id="membertable" layoutX="20.0" layoutY="89.0" onMousePressed="#getSelectedmember" prefHeight="383.0" prefWidth="331.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 40; -fx-background-radius: 40;" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="89.0">
+               <columns>
+                  <TableColumn fx:id="idmt" prefWidth="45.0" text="ID" />
+                  <TableColumn fx:id="namemt" prefWidth="63.0" text="name" />
+                  <TableColumn fx:id="gendermt" minWidth="3.0" prefWidth="49.0" text="gender" />
+                  <TableColumn fx:id="addressmt" minWidth="0.0" prefWidth="49.0" text="address" />
+                  <TableColumn fx:id="datemt" prefWidth="53.0" text="date" />
+                  <TableColumn fx:id="weightmt" prefWidth="60.0" text="weight" />
+               </columns>
+            </TableView>
+            <Label layoutX="481.0" layoutY="70.0" prefHeight="41.0" prefWidth="73.0" text="ID" textFill="#ebeaea">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="updatememid" layoutX="549.0" layoutY="78.0" prefHeight="27.0" prefWidth="149.0" />
+            <Label layoutX="471.0" layoutY="117.0" prefHeight="41.0" prefWidth="116.0" text="Name" textFill="#ebeaea">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="updatememname" layoutX="554.0" layoutY="124.0" />
+            <Label layoutX="471.0" layoutY="164.0" prefHeight="41.0" prefWidth="116.0" text="Gender" textFill="#ebeaea">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="updatememgender" layoutX="552.0" layoutY="168.0" />
+            <Label layoutX="466.0" layoutY="210.0" prefHeight="41.0" prefWidth="116.0" text="Address" textFill="#ebeaea">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="updatememaddress" layoutX="558.0" layoutY="218.0" prefHeight="25.0" prefWidth="147.0" />
+            <Label layoutX="477.0" layoutY="254.0" prefHeight="41.0" prefWidth="116.0" text="Date" textFill="#ebeaea">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="updatememdate" layoutX="555.0" layoutY="264.0" />
+            <Label layoutX="475.0" layoutY="19.0" prefHeight="34.0" prefWidth="231.0" text="Member Information" textFill="#f8f5f5">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="470.0" layoutY="301.0" prefHeight="41.0" prefWidth="116.0" text="Weight" textFill="#ebeaea">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="updatememweight" layoutX="552.0" layoutY="305.0" prefHeight="25.0" prefWidth="151.0" />
+            <Button layoutX="501.0" layoutY="379.0" mnemonicParsing="false" onAction="#updatemember" prefHeight="34.0" prefWidth="180.0" text="UPDATE" textFill="#6f43d1">
+               <font>
+                  <Font name="Bell MT" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="newpagemedical" layoutX="74.0" layoutY="181.0" prefHeight="534.0" prefWidth="729.0" style="-fx-background-color: #190536;" visible="false">
+         <children>
+            <ImageView fitHeight="463.0" fitWidth="651.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@medicalcheck.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="592.0" layoutY="60.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="123.0" text="فحص جديد " />
+            <Button layoutX="594.0" layoutY="187.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="116.0" text="فحوصات سابقة" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="newmemberpage" layoutX="73.0" layoutY="179.0" prefHeight="535.0" prefWidth="706.0" style="-fx-background-color: #190536;" visible="false">
+         <children>
+            <Label layoutX="30.0" layoutY="334.0" prefHeight="17.0" prefWidth="124.0" text="Date of birth :-" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="186.0" prefHeight="17.0" prefWidth="124.0" text="Member ID :-" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="36.0" layoutY="233.0" prefHeight="17.0" prefWidth="112.0" text="Gender :-" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="36.0" layoutY="282.0" prefHeight="17.0" prefWidth="124.0" text="Address :-" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="140.0" prefHeight="17.0" prefWidth="124.0" text="Member Name :-" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="membername" layoutX="160.0" layoutY="138.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="memberid" layoutX="160.0" layoutY="184.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="gender" layoutX="160.0" layoutY="231.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="address" layoutX="160.0" layoutY="280.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-radius: 10px;" />
+            <Label layoutX="30.0" layoutY="383.0" prefHeight="17.0" prefWidth="124.0" text="Weight :-" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="weight" layoutX="160.0" layoutY="381.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-radius: 10px;" />
+            <Button fx:id="insertmember1" layoutX="425.0" layoutY="345.0" mnemonicParsing="false" onAction="#insertmemberintodata" prefHeight="45.0" prefWidth="112.0" style="-fx-background-color: #5d2ca8;" text="Insert Member" textFill="#fcf6f6" />
+            <Button fx:id="deletedatafrommysql1" layoutX="432.0" layoutY="244.0" mnemonicParsing="false" onAction="#deletedatafrommysql" prefHeight="45.0" prefWidth="112.0" style="-fx-background-color: #5d2ca8;" text="Delete Member" textFill="#fcf6f6" />
+            <Button fx:id="getdatafrommysql1" layoutX="430.0" layoutY="163.0" mnemonicParsing="false" onAction="#getdatafrommysql" prefHeight="45.0" prefWidth="112.0" style="-fx-background-color: #5d2ca8;" text="Show Members" textFill="#fcf6f6" />
+            <DatePicker fx:id="dateofbirth" layoutX="160.0" layoutY="332.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-radius: 10px;" />
+            <Label layoutX="262.0" layoutY="47.0" text="New Member Participate" textFill="#f8f4f4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-3.0" onMouseDragged="#draged" onMousePressed="#pressed" prefHeight="731.0" prefWidth="1207.0" style="-fx-background-color: #451975;">
+         <children>
+            <Button fx:id="managememberbtn" layoutX="719.0" layoutY="88.0" mnemonicParsing="false" onAction="#handlebuttonaction" prefHeight="33.0" prefWidth="120.0" text="ادارة المشتركين " />
+            <Button fx:id="managepartbtn" layoutX="934.0" layoutY="94.0" mnemonicParsing="false" onAction="#handlebuttonaction" prefHeight="33.0" prefWidth="124.0" text="ادارة الاشتراكات " />
+            <Button fx:id="classbtn" layoutX="263.0" layoutY="90.0" mnemonicParsing="false" onAction="#handlebuttonaction" prefHeight="27.0" prefWidth="160.0" text="ادارة االحصص والغرف والأدوات " />
+            <Button fx:id="moneybtn" layoutX="38.0" layoutY="88.0" mnemonicParsing="false" onAction="#handlebuttonaction" prefHeight="27.0" prefWidth="164.0" text="الأمور المالية والزبائن" />
+            <ImageView fitHeight="75.0" fitWidth="82.0" layoutX="511.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/employee.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="managemploy" layoutX="482.0" layoutY="87.0" mnemonicParsing="false" onAction="#handlebuttonaction" prefHeight="30.0" prefWidth="136.0" text="ادارة الموظفين" />
+            <ImageView fitHeight="75.0" fitWidth="82.0" layoutX="740.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/memm.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="74.0" fitWidth="91.0" layoutX="300.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/parict.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="100.0" layoutX="88.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/mo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="88.0" layoutX="950.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/part.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="60.0" layoutX="1086.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/shoutdown.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="1097.0" layoutY="98.0" mnemonicParsing="false" onAction="#close" prefHeight="10.0" prefWidth="45.0" text="Close" />
+            <AnchorPane fx:id="pageclass" layoutX="17.0" layoutY="145.0" prefHeight="604.0" prefWidth="1203.0" style="-fx-background-color: #451975;" visible="false">
+               <children>
+                  <AnchorPane fx:id="anchorins" layoutX="15.0" layoutY="16.0" prefHeight="571.0" prefWidth="651.0">
+                     <children>
+                        <TableView fx:id="tableforin" prefHeight="571.0" prefWidth="651.0">
+                           <columns>
+                              <TableColumn fx:id="idco" prefWidth="75.0" text="insID" />
+                              <TableColumn fx:id="nameco" prefWidth="75.0" text="insName" />
+                              <TableColumn fx:id="proco" prefWidth="125.0" text="insproducer" />
+                              <TableColumn fx:id="roomco" minWidth="0.0" prefWidth="95.0" text="roomID" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="686.0" layoutY="31.0" prefHeight="17.0" prefWidth="159.0" text="                        الة" textAlignment="CENTER" textFill="WHITE" />
+                  <TextField fx:id="infol" layoutX="686.0" layoutY="399.0" prefHeight="25.0" prefWidth="301.0" promptText="information" />
+                  <Label layoutX="860.0" layoutY="31.0" prefHeight="17.0" prefWidth="104.0" text="       . حصة" textFill="WHITE" />
+                  <AnchorPane fx:id="anchorforclass" layoutX="12.0" layoutY="13.0" prefHeight="583.0" prefWidth="661.0" visible="false">
+                     <children>
+                        <TableView fx:id="tablee" layoutX="5.0" layoutY="6.0" prefHeight="571.0" prefWidth="651.0">
+                           <columns>
+                              <TableColumn fx:id="ctableid" prefWidth="75.0" text="Id" />
+                              <TableColumn fx:id="ctablename" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="ctablestart" prefWidth="105.0" text="Start time" />
+                              <TableColumn fx:id="ctableper" prefWidth="82.0" text="period" />
+                              <TableColumn fx:id="ctableRid" prefWidth="72.0" text="roomID" />
+                              <TableColumn fx:id="ctableEid" prefWidth="86.0" text="employeeID" />
+                              <TableColumn fx:id="cclassification" prefWidth="83.0" text="teacher" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <VBox layoutX="1027.0" layoutY="65.0" prefHeight="445.0" prefWidth="147.0" style="fx-background-color: #451975;">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#justaddplz" prefHeight="54.0" prefWidth="151.0" text="اضافة حصة" />
+                        <Button fx:id="addins" mnemonicParsing="false" onAction="#addinsA" prefHeight="54.0" prefWidth="147.0" text="اضافة الة" />
+                        <Button fx:id="removeclass" mnemonicParsing="false" onAction="#removeclassA" prefHeight="54.0" prefWidth="151.0" text="ازالة حصة" />
+                        <Button fx:id="removeins" mnemonicParsing="false" onAction="#removeinsA" prefHeight="52.0" prefWidth="147.0" text="ازالة الة" />
+                        <Button fx:id="searchclass" mnemonicParsing="false" onAction="#searchclassA" prefHeight="54.0" prefWidth="149.0" text="البجث عن حصة" />
+                        <Button fx:id="searchins" mnemonicParsing="false" onAction="#searchinsA" prefHeight="54.0" prefWidth="162.0" text="البحث عن الة" />
+                        <Button mnemonicParsing="false" onAction="#showclasses" prefHeight="54.0" prefWidth="149.0" text="جميع الحصص" />
+                        <Button mnemonicParsing="false" onAction="#showins" prefHeight="54.0" prefWidth="159.0" text="جميع الالات" />
+                     </children>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="13.02" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant azimuth="132.91" color="#ababab" elevation="40.81" />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </VBox>
+                  <VBox layoutX="837.0" layoutY="58.0" prefHeight="295.0" prefWidth="150.0">
+                     <children>
+                        <TextField fx:id="classnamel" prefHeight="47.0" prefWidth="150.0" promptText="اسم الحصة" />
+                        <TextField fx:id="classidl" prefHeight="53.0" prefWidth="150.0" promptText="رقم الحصة" />
+                        <TextField fx:id="classStarttime" prefHeight="53.0" prefWidth="150.0" promptText="وقت البدء (ساعات - دقائق)" />
+                        <TextField fx:id="timel" prefHeight="51.0" prefWidth="150.0" promptText="المدة بدقائق" />
+                        <TextField fx:id="roomidl" prefHeight="44.0" prefWidth="150.0" promptText="رقم الغرفة" />
+                        <TextField fx:id="employeeidl" prefHeight="49.0" prefWidth="150.0" promptText="رقم الموضف" />
+                     </children>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="11.63" surfaceScale="5.22">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant azimuth="220.82" color="#a4a2a2" elevation="124.53" />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </VBox>
+                  <VBox layoutX="678.0" layoutY="58.0" prefHeight="295.0" prefWidth="143.0">
+                     <children>
+                        <TextField fx:id="insnamel" prefHeight="45.0" prefWidth="143.0" promptText="اسم الالة" />
+                        <TextField fx:id="insidl" prefHeight="54.0" prefWidth="143.0" promptText="رقم الالة" />
+                        <TextField fx:id="insfacl" prefHeight="54.0" prefWidth="143.0" promptText="المصنع" />
+                        <TextField fx:id="insroomidl" prefHeight="55.0" prefWidth="143.0" promptText="رقم الغرقة" />
+                     </children>
+                     <effect>
+                        <Lighting diffuseConstant="1.26" specularConstant="0.42" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant azimuth="195.7" elevation="53.37" />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pageemploye" layoutX="10.0" layoutY="122.0" prefHeight="583.0" prefWidth="1215.0" style="-fx-background-color: #451975;">
+         <children>
+            <AnchorPane fx:id="Reportmohannad" layoutX="-14.0" layoutY="15.0" prefHeight="604.0" prefWidth="1229.0" style="-fx-background-color: #ccc6c6;" visible="false">
+               <children>
+                  <Label layoutX="518.0" layoutY="25.0" prefHeight="31.0" prefWidth="105.0" text="Report" textFill="#39067c">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-1.0" layoutY="68.0" prefHeight="1.0" prefWidth="1200.0" style="-fx-background-color: #39067c;" />
+                  <Pane layoutX="20.0" layoutY="86.0" prefHeight="127.0" prefWidth="348.0" style="-fx-background-color: #39067c;">
+                     <children>
+                        <Label layoutX="28.0" layoutY="23.0" text="ID emp" textFill="#fcfafa">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="repid" layoutX="130.0" layoutY="17.0" prefHeight="25.0" prefWidth="199.0" />
+                        <ToggleButton layoutX="40.0" layoutY="67.0" mnemonicParsing="false" onAction="#inacction" prefHeight="31.0" prefWidth="92.0" text="Get Info" textFill="#39067c">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </ToggleButton>
+                        <Label layoutX="160.0" layoutY="74.0" prefHeight="13.0" prefWidth="151.0" textFill="#fffefe">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ToggleButton layoutX="154.0" layoutY="67.0" mnemonicParsing="false" onAction="#inacctionS" prefHeight="31.0" prefWidth="92.0" text="Save" textFill="#39067c">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </ToggleButton>
+                     </children>
+                  </Pane>
+                  <VBox layoutX="408.0" layoutY="100.0" prefHeight="136.0" prefWidth="780.0">
+                     <children>
+                        <HBox prefHeight="44.0" prefWidth="780.0">
+                           <children>
+                              <Label prefHeight="44.0" prefWidth="766.0" text="                                                        All Personal Info Of  employee" textFill="#4a10a8">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="textarea" prefHeight="96.0" prefWidth="666.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="403.0" layoutY="264.0" prefHeight="136.0" prefWidth="390.0">
+                     <children>
+                        <HBox prefHeight="44.0" prefWidth="780.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <Button layoutX="20.0" layoutY="13.0" mnemonicParsing="false" onAction="#out" text="X" textFill="#fc1313">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="mmaleb" layoutX="877.0" layoutY="466.0" mnemonicParsing="false" onAction="#mmale" text="ذكر" textFill="WHITE" />
+            <RadioButton fx:id="mfemaleb" layoutX="875.0" layoutY="506.0" mnemonicParsing="false" onAction="#mfemale" text="انثى" textFill="WHITE" />
+            <Label layoutX="951.0" layoutY="475.0" prefHeight="31.0" prefWidth="62.0" text="الجنس" textAlignment="CENTER" textFill="WHITE" />
+            <TableView fx:id="met" layoutX="9.0" layoutY="48.0" prefHeight="492.0" prefWidth="794.0">
+               <columns>
+                  <TableColumn fx:id="tabelen" prefWidth="75.0" text="الاسم" />
+                  <TableColumn fx:id="tableid" prefWidth="75.0" text="الرقم" />
+                  <TableColumn fx:id="tableaddress" prefWidth="75.0" text="العنوان" />
+                  <TableColumn fx:id="tablesalary" prefWidth="75.0" text="الراتب" />
+                  <TableColumn fx:id="tablephone" prefWidth="75.0" text="الهاتف" />
+                  <TableColumn fx:id="tabledob" prefWidth="105.0" text="تاريخ الميلاد" />
+                  <TableColumn fx:id="tablegender" prefWidth="63.0" text="الجنس" />
+                  <TableColumn fx:id="tablesince" prefWidth="79.0" text="بدء الخدمة" />
+                  <TableColumn fx:id="tablespe" prefWidth="72.0" text="تخصص" />
+                  <TableColumn fx:id="tableend" prefWidth="78.0" text="انتهاء الخدمة" />
+               </columns>
+            </TableView>
+            <VBox fx:id="vbbtn" layoutX="1035.0" layoutY="81.0" prefHeight="393.0" prefWidth="146.0" spacing="20.0">
+               <children>
+                  <Button fx:id="maeb" mnemonicParsing="false" onAction="#mae" prefHeight="39.0" prefWidth="148.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="اضافة" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="mdeb" mnemonicParsing="false" onAction="#mde" prefHeight="39.0" prefWidth="143.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="حذف" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="mueb" mnemonicParsing="false" onAction="#mue" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="تعديل" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="mseb" mnemonicParsing="false" onAction="#mse" prefHeight="39.0" prefWidth="145.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="بحث" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="mshowab" mnemonicParsing="false" onAction="#mshowa" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="عرض الكل" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="mshowb" mnemonicParsing="false" onAction="#mshow" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="عرض الحالين" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#reportbtn" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: c7c6cc; -fx-background-radius: 10;" text="Report" textFill="#050407">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="1.91" specularConstant="1.14" specularExponent="40.0" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="vbtxt" layoutX="863.0" layoutY="87.0" prefHeight="355.0" prefWidth="149.0" spacing="30.0">
+               <children>
+                  <TextField fx:id="mne" promptText="الاسم">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="mide" promptText="رقم التعريف">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="maddresse" promptText="العنوان">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="msalarye" promptText="الراتب">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="mphonee" promptText="رقم الهاتف">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="mspe" promptText="التخصص">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <DatePicker fx:id="mdobe" prefHeight="25.0" prefWidth="159.0" promptText="تاريخ الميلاد">
+                     <effect>
+                        <Lighting diffuseConstant="1.58" specularConstant="0.83" specularExponent="21.4" surfaceScale="7.9">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </DatePicker>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
